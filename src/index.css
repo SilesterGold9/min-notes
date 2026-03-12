@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #FDFBF7;
+  --bg-secondary: #F4F1EB;
+  --bg-card: #FFFFFF;
+  --border-subtle: #EAE7E0;
+  --text-main: #2C2A25;
+  --text-muted: #7A756B;
+  --text-faint: #A39E93;
+}
+
+.dark {
+  --bg-primary: #1A1918;
+  --bg-secondary: #242321;
+  --bg-card: #201F1E;
+  --border-subtle: #363431;
+  --text-main: #EAE7E0;
+  --text-muted: #A39E93;
+  --text-faint: #7A756B;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom Scrollbar for Desktop */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-faint);
+}
+
+.ProseMirror {
+  outline: none;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: var(--text-faint);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror u {
+  text-decoration: underline;
+}
+
+/* Task List Styles */
+ul[data-type="taskList"] {
+  list-style: none;
+  padding: 0;
+}
+
+ul[data-type="taskList"] p {
+  margin: 0;
+}
+
+ul[data-type="taskList"] li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+ul[data-type="taskList"] li > label {
+  flex: 0 0 auto;
+  margin-right: 0.75rem;
+  user-select: none;
+  margin-top: 0.25rem;
+}
+
+ul[data-type="taskList"] li > label input {
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--border-subtle);
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  margin: 0;
+}
+
+ul[data-type="taskList"] li > label input:checked {
+  background-color: var(--theme-color, #4F46E5);
+  border-color: var(--theme-color, #4F46E5);
+}
+
+ul[data-type="taskList"] li > label input:checked::after {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 0.35rem;
+  height: 0.6rem;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+}
+
+ul[data-type="taskList"] li > div {
+  flex: 1 1 auto;
+}
+
+ul[data-type="taskList"] li[data-checked="true"] > div {
+  text-decoration: line-through;
+  color: var(--text-faint);
+}
